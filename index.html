@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Instagram投稿マニュアル｜KMAX</title>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Kaisei+Decol:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --pink:#f7c5d0; --pink-dark:#e8899a;
@@ -18,7 +17,7 @@
     --bg:#fff8f5; --border:rgba(247,197,208,0.4);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Zen Maru Gothic',sans-serif;background:var(--bg);color:var(--text);line-height:1.85;}
+  body{font-family:'Yu Gothic','Yu Gothic UI','Hiragino Sans','Meiryo',sans-serif;background:var(--bg);color:var(--text);line-height:1.85;}
   section[id]{scroll-margin-top:60px;}
 
   /* ツールチップ */
@@ -37,7 +36,7 @@
   header::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,0.4),transparent);border-radius:50%;}
   header::after{content:'';position:absolute;bottom:0;left:-30px;width:250px;height:250px;background:radial-gradient(circle,rgba(255,255,255,0.3),transparent);border-radius:50%;}
   .header-badge{display:inline-block;background:white;color:var(--pink-dark);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;margin-bottom:12px;letter-spacing:2px;position:relative;z-index:1;}
-  header h1{font-family:'Kaisei Decol',serif;font-size:clamp(22px,5vw,38px);color:var(--text);margin-bottom:6px;position:relative;z-index:1;}
+  header h1{font-family:'Yu Mincho','Hiragino Mincho ProN','Meiryo',serif;font-size:clamp(22px,5vw,38px);color:var(--text);margin-bottom:6px;position:relative;z-index:1;}
   header p{color:var(--text-light);font-size:13px;position:relative;z-index:1;margin-bottom:28px;}
 
   /* ナビ（2段構成） */
@@ -67,7 +66,7 @@
   /* チャプター */
   .chapter{margin-bottom:56px;}
   .chapter-header{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
-  .chapter-num{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Kaisei Decol',serif;font-size:18px;font-weight:700;color:white;flex-shrink:0;}
+  .chapter-num{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Yu Mincho','Hiragino Mincho ProN','Meiryo',serif;font-size:18px;font-weight:700;color:white;flex-shrink:0;}
   .ch1 .chapter-num{background:linear-gradient(135deg,var(--pink-dark),var(--lavender-dark));}
   .ch2 .chapter-num{background:linear-gradient(135deg,var(--blue-dark),var(--sky-dark));}
   .ch3 .chapter-num{background:linear-gradient(135deg,var(--yellow-dark),var(--peach-dark));}
@@ -77,7 +76,7 @@
   .ch7 .chapter-num{background:linear-gradient(135deg,var(--sky-dark),var(--mint-dark));}
   .ch8 .chapter-num{background:linear-gradient(135deg,var(--pink-dark),var(--peach-dark));}
   .chapter-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--text-light);margin-bottom:2px;}
-  .chapter-title{font-family:'Kaisei Decol',serif;font-size:clamp(16px,3vw,21px);color:var(--text);}
+  .chapter-title{font-family:'Yu Mincho','Hiragino Mincho ProN','Meiryo',serif;font-size:clamp(16px,3vw,21px);color:var(--text);}
 
   /* カード */
   .card{background:white;border-radius:18px;padding:22px 26px;margin-bottom:13px;box-shadow:0 2px 14px rgba(200,150,150,0.07);border:1.5px solid var(--border);}
@@ -185,7 +184,7 @@
   .kpi-val{display:inline-block;background:var(--lavender);color:var(--lavender-dark);border-radius:8px;padding:1px 8px;font-size:12px;font-weight:700;white-space:nowrap;}
 
   footer{background:linear-gradient(135deg,var(--pink) 0%,var(--lavender) 100%);text-align:center;padding:36px 24px;font-size:13px;color:var(--text-light);}
-  footer strong{display:block;font-family:'Kaisei Decol',serif;font-size:18px;color:var(--text);margin-bottom:6px;}
+  footer strong{display:block;font-family:'Yu Mincho','Hiragino Mincho ProN','Meiryo',serif;font-size:18px;color:var(--text);margin-bottom:6px;}
 
   @media(max-width:640px){
     main{padding:28px 14px 60px;}
@@ -266,7 +265,7 @@
 
     <div class="card">
       <h3>投稿サイズ</h3>
-      <div style="text-align:center;"><img src="assets/image-01.png" alt="投稿サイズ参考図" style="width:100%;max-width:640px;border-radius:12px;border:1.5px solid var(--border);display:inline-block;margin-top:8px;"></div>
+      <div style="text-align:center;"><img src="assets/image-01.png" alt="投稿サイズ参考図" style="width:100%;max-width:640px;height:auto;border-radius:12px;border:1.5px solid var(--border);display:inline-block;margin-top:8px;" width="1536" height="1024" loading="lazy" decoding="async"></div>
       <ul class="size-note-list" style="margin-top:12px;">
         <li>📝 最低文字サイズ：30px（それ以下は読みにくくなるため注意）</li>
       </ul>
@@ -344,8 +343,8 @@
         <div class="post-category-title-row">▽ KMAXで働く人の紹介</div>
         <div class="post-layout">
           <div class="post-imgs">
-            <img src="assets/image-02.jpg" alt="社員紹介投稿例1" class="post-thumb">
-            <img src="assets/image-03.jpg" alt="社員紹介投稿例2" class="post-thumb">
+            <img src="assets/image-02.jpg" alt="社員紹介投稿例1" class="post-thumb" width="1080" height="1350" loading="lazy" decoding="async">
+            <img src="assets/image-03.jpg" alt="社員紹介投稿例2" class="post-thumb" width="1080" height="1350" loading="lazy" decoding="async">
           </div>
           <ul class="post-text-list">
             <li>新卒入社の社員</li>
@@ -361,8 +360,8 @@
         <div class="post-category-title-row">▽ 会社について</div>
         <div class="post-layout">
           <div class="post-imgs">
-            <img src="assets/image-04.jpg" alt="会社投稿例1" class="post-thumb">
-            <img src="assets/image-05.jpg" alt="会社投稿例2" class="post-thumb">
+            <img src="assets/image-04.jpg" alt="会社投稿例1" class="post-thumb" width="1080" height="1350" loading="lazy" decoding="async">
+            <img src="assets/image-05.jpg" alt="会社投稿例2" class="post-thumb" width="1080" height="1350" loading="lazy" decoding="async">
           </div>
           <ul class="post-text-list">
             <li>自己紹介・設立◎周年</li>
@@ -378,8 +377,8 @@
         <div class="post-category-title-row">▽ 広報的内容</div>
         <div class="post-layout">
           <div class="post-imgs">
-            <img src="assets/image-06.jpg" alt="広報投稿例1" class="post-thumb">
-            <img src="assets/image-07.jpg" alt="広報投稿例2" class="post-thumb">
+            <img src="assets/image-06.jpg" alt="広報投稿例1" class="post-thumb" width="1080" height="1350" loading="lazy" decoding="async">
+            <img src="assets/image-07.jpg" alt="広報投稿例2" class="post-thumb" width="1080" height="1350" loading="lazy" decoding="async">
           </div>
           <ul class="post-text-list">
             <li>学校訪問・イベントの告知＆報告</li>
