@@ -160,6 +160,24 @@
   .size-note-list{font-size:11px;color:var(--text-light);margin-top:10px;padding-left:0;list-style:none;}
   .size-note-list li{padding:2px 0;}
 
+  .observe-map{display:grid;grid-template-columns:1fr minmax(220px,280px) 1fr;gap:16px;align-items:center;margin-top:16px;}
+  .observe-lead{max-width:720px;margin-bottom:14px;font-size:13.5px;color:var(--text-light);line-height:1.9;}
+  .observe-visual{position:relative;min-height:330px;display:flex;align-items:center;justify-content:center;}
+  .observe-post{width:210px;aspect-ratio:4/5;border-radius:18px;background:linear-gradient(180deg,#fff,rgba(255,248,245,0.96));border:1px solid rgba(247,197,208,0.55);box-shadow:0 18px 36px rgba(120,84,84,0.16);padding:14px;position:relative;z-index:2;}
+  .observe-post::before{content:'';display:block;height:118px;border-radius:14px;background:linear-gradient(135deg,var(--pink),var(--yellow) 48%,var(--mint));margin-bottom:12px;}
+  .observe-post::after{content:'';position:absolute;inset:22px 26px auto auto;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.72);border:2px solid white;}
+  .observe-line{height:9px;border-radius:999px;background:rgba(247,197,208,0.72);margin-bottom:8px;}
+  .observe-line.short{width:58%;}
+  .observe-caption{font-size:11px;color:var(--text-light);line-height:1.6;margin-top:10px;}
+  .observe-callouts{display:grid;gap:12px;}
+  .observe-callout{position:relative;background:rgba(255,255,255,0.88);border:1px solid rgba(247,197,208,0.46);border-radius:14px;padding:13px 14px;box-shadow:0 10px 22px rgba(120,84,84,0.07);}
+  .observe-callout::before{content:'';position:absolute;top:50%;width:34px;height:1.5px;background:linear-gradient(90deg,rgba(232,137,154,0.65),transparent);}
+  .observe-left .observe-callout::before{right:-34px;}
+  .observe-right .observe-callout::before{left:-34px;transform:scaleX(-1);}
+  .observe-kicker{display:inline-block;margin-bottom:5px;padding:2px 8px;border-radius:999px;background:var(--pink);color:var(--pink-dark);font-size:10px;font-weight:700;}
+  .observe-callout strong{display:block;font-size:13.5px;color:var(--text);line-height:1.55;margin-bottom:3px;}
+  .observe-callout span{display:block;font-size:12px;color:var(--text-light);line-height:1.65;}
+
   /* カラーグリッド */
   .color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px;}
   .color-card{border-radius:14px;padding:14px 12px;text-align:center;border:1px solid rgba(247,197,208,0.42);background:linear-gradient(180deg,#fff,rgba(255,248,245,0.8));box-shadow:0 8px 18px rgba(120,84,84,0.06);}
@@ -226,6 +244,11 @@
     .nav-block-label{font-size:9px;padding:0 10px;}
     .nav-block ul{justify-content:flex-start;}
     .size-visual-wrap{gap:20px;}
+    .observe-map{grid-template-columns:1fr;gap:12px;}
+    .observe-visual{min-height:260px;order:-1;}
+    .observe-post{width:190px;}
+    .observe-left,.observe-right{display:grid;gap:10px;}
+    .observe-callout::before{display:none;}
     .post-row{padding:16px 14px;}
     .post-layout{grid-template-columns:1fr;gap:14px;}
     .post-imgs{justify-content:center;max-width:260px;margin:0 auto;width:100%;}
@@ -341,20 +364,40 @@
 
     <div class="card">
       <h3>良い投稿を観察しよう</h3>
-      <p style="margin-bottom:12px;">投稿を作る前に良い投稿をたくさん見ておくことで、「どんなデザインが魅力的か」「どんな言葉が刺さるか」の感覚が身につきます。ただ見るだけでなく、<strong>「なぜこの投稿は良いのか？」を言語化する習慣</strong>が大切です。</p>
-      <p style="font-weight:700;margin-bottom:8px;">デザイン・カラーを読み解く</p>
-      <ul style="margin-bottom:14px;">
-        <li><strong>なぜこの色を使っているのか？</strong><br>色には見る人に与える印象（<span class="tip" tabindex="0">カラーイメージ<span class="tip-icon">?</span><span class="tip-box">色が人の感情や印象に与える効果のこと。同じ内容でも使う色で受け取り方が大きく変わる。</span></span>）があり、ターゲットに合わせて意図的に選ばれています。</li>
-        <li><strong>なぜこのフォントを使っているのか？</strong><br>フォントの選択はブランドの「らしさ」を作る重要な要素です。</li>
-        <li><strong>全体の印象がそのアカウントの戦略と合っているか？</strong><br>例：若者向け採用アカウントはパステル・手書き風で親しみやすさを演出している、など。</li>
-      </ul>
-      <p style="font-weight:700;margin-bottom:8px;">内容・構成を読み解く</p>
-      <ul>
-        <li>表紙を見て「続きを見たい」と思ったか？ → なぜそう感じた？</li>
-        <li>1枚ごとに伝えることが絞られているか？</li>
-        <li>ページをめくるごとに興味が深まる流れになっているか？</li>
-        <li>最後のページに次の行動への誘導があるか？</li>
-      </ul>
+      <p class="observe-lead">投稿を作る前に、良い投稿を「なんとなく見る」のではなく、どこが良いのかを分解して観察します。見るポイントを決めておくと、デザインや言葉選びの感覚が身につきやすくなります。</p>
+      <div class="observe-map">
+        <div class="observe-callouts observe-left">
+          <div class="observe-callout">
+            <span class="observe-kicker">COLOR</span>
+            <strong>色は誰に向けた印象か</strong>
+            <span>やさしい、信頼感、明るいなど、色が与える印象を確認します。</span>
+          </div>
+          <div class="observe-callout">
+            <span class="observe-kicker">FONT</span>
+            <strong>文字は読みやすいか</strong>
+            <span>フォントの雰囲気がブランドらしさと合っているかを見ます。</span>
+          </div>
+        </div>
+        <div class="observe-visual" aria-label="投稿を見るポイント">
+          <div class="observe-post">
+            <div class="observe-line"></div>
+            <div class="observe-line short"></div>
+            <p class="observe-caption">中央の投稿を見ながら、周囲のポイントを順番に確認します。</p>
+          </div>
+        </div>
+        <div class="observe-callouts observe-right">
+          <div class="observe-callout">
+            <span class="observe-kicker">COVER</span>
+            <strong>表紙で続きが見たくなるか</strong>
+            <span>最初の1枚で興味を引けているか、理由まで考えます。</span>
+          </div>
+          <div class="observe-callout">
+            <span class="observe-kicker">FLOW</span>
+            <strong>最後まで流れがあるか</strong>
+            <span>1枚ごとに伝えることが絞られ、最後に次の行動があるかを見ます。</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -859,7 +902,7 @@
 
 <script>
   document.querySelectorAll('.card').forEach((card) => {
-    if (card.querySelector('img, .post-row, .color-grid, .hashtag-list')) return;
+    if (card.querySelector('img, .post-row, .color-grid, .hashtag-list, .observe-map')) return;
     const heading = card.querySelector('h3');
     if (!heading) return;
 
