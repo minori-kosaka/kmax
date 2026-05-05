@@ -58,6 +58,11 @@
   .nav-block.action a:hover{background:var(--mint);color:var(--text);}
 
   main{max-width:960px;margin:0 auto;padding:46px 24px 86px;}
+  .quick-guide{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:32px;}
+  .quick-card{background:rgba(255,255,255,0.92);border:1px solid rgba(247,197,208,0.44);border-radius:16px;padding:15px 14px;box-shadow:0 10px 24px rgba(120,84,84,0.07);}
+  .quick-label{display:inline-block;margin-bottom:8px;padding:2px 8px;border-radius:999px;background:var(--pink);color:var(--pink-dark);font-size:10px;font-weight:700;letter-spacing:0.5px;}
+  .quick-card strong{display:block;font-size:14px;color:var(--text);line-height:1.5;margin-bottom:4px;}
+  .quick-card span{display:block;font-size:12px;color:var(--text-light);line-height:1.65;}
 
   /* ブロック区切り */
   .block-divider{display:flex;align-items:center;gap:12px;margin:54px 0 34px;}
@@ -99,6 +104,15 @@
   .card p,.card li{font-size:13.8px;color:var(--text-light);line-height:1.95;position:relative;z-index:1;}
   .card ul,.card ol{padding-left:18px;}
   .card li{margin-bottom:7px;}
+  .card.is-collapsible{padding-bottom:18px;}
+  .card.is-collapsible h3{margin-bottom:8px;}
+  .card-preview{font-size:13px;color:var(--text-light);line-height:1.8;margin:0 0 12px;position:relative;z-index:1;}
+  .card-detail{position:relative;z-index:1;border-top:1px solid rgba(247,197,208,0.28);padding-top:10px;margin-top:8px;}
+  .card-detail summary{display:inline-flex;align-items:center;gap:7px;cursor:pointer;list-style:none;padding:6px 12px;border-radius:999px;background:linear-gradient(135deg,var(--pink),rgba(253,233,176,0.78));color:var(--text);font-size:12px;font-weight:700;box-shadow:0 6px 14px rgba(232,137,154,0.12);}
+  .card-detail summary::-webkit-details-marker{display:none;}
+  .card-detail summary::after{content:'+';display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:white;color:var(--pink-dark);font-weight:700;}
+  .card-detail[open] summary::after{content:'-';}
+  .card-detail-body{padding-top:12px;}
 
   table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;margin-top:10px;border:1px solid rgba(247,197,208,0.36);border-radius:14px;overflow:hidden;background:white;box-shadow:0 8px 20px rgba(120,84,84,0.05);}
   th{background:linear-gradient(135deg,var(--pink),rgba(253,233,176,0.72));color:var(--text);padding:11px 14px;font-weight:700;text-align:left;white-space:nowrap;border-bottom:1px solid rgba(247,197,208,0.4);}
@@ -201,6 +215,7 @@
 
   @media(max-width:640px){
     main{padding:28px 14px 60px;}
+    .quick-guide{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;}
     .card{padding:16px;}
     .chapter-header{gap:10px;}
     .chapter-num{width:42px;height:42px;font-size:15px;}
@@ -244,6 +259,28 @@
 
 <main>
 
+  <div class="quick-guide" aria-label="要点まとめ">
+    <div class="quick-card">
+      <div class="quick-label">POINT 1</div>
+      <strong>誰に届けるか</strong>
+      <span>新卒・アルバイト・中途で伝え方を変える</span>
+    </div>
+    <div class="quick-card">
+      <div class="quick-label">POINT 2</div>
+      <strong>見た目をそろえる</strong>
+      <span>やさしい色・読みやすい文字・KMAXらしさ</span>
+    </div>
+    <div class="quick-card">
+      <div class="quick-label">POINT 3</div>
+      <strong>公開前に確認</strong>
+      <span>写真・文言・誤字・公開NG情報をチェック</span>
+    </div>
+    <div class="quick-card">
+      <div class="quick-label">POINT 4</div>
+      <strong>投稿後も確認</strong>
+      <span>表示サイズを整えてストーリーズにも共有</span>
+    </div>
+  </div>
 
   <!-- Ch.1 -->
   <section class="chapter ch1" id="ch1">
@@ -819,6 +856,40 @@
   </section>
 
 </main>
+
+<script>
+  document.querySelectorAll('.card').forEach((card) => {
+    if (card.querySelector('img, .post-row, .color-grid, .hashtag-list')) return;
+    const heading = card.querySelector('h3');
+    if (!heading) return;
+
+    const bodyNodes = Array.from(card.childNodes).filter((node) => node !== heading);
+    const bodyText = bodyNodes.map((node) => node.textContent || '').join('').trim();
+    if (bodyText.length < 360) return;
+
+    const firstBlock = bodyNodes.find((node) => {
+      if (node.nodeType !== Node.ELEMENT_NODE) return false;
+      return ['P', 'UL', 'OL', 'TABLE', 'DIV'].includes(node.tagName);
+    });
+    const previewText = (firstBlock?.textContent || bodyText).replace(/\s+/g, ' ').trim().slice(0, 86);
+
+    const preview = document.createElement('p');
+    preview.className = 'card-preview';
+    preview.textContent = previewText + (previewText.length >= 86 ? '...' : '');
+
+    const details = document.createElement('details');
+    details.className = 'card-detail';
+    const summary = document.createElement('summary');
+    summary.textContent = '詳しく見る';
+    const detailBody = document.createElement('div');
+    detailBody.className = 'card-detail-body';
+
+    bodyNodes.forEach((node) => detailBody.appendChild(node));
+    details.append(summary, detailBody);
+    card.append(preview, details);
+    card.classList.add('is-collapsible');
+  });
+</script>
 
 <footer>
   <strong>KMAX Instagram マニュアル</strong>
