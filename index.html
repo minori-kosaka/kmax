@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram投稿マニュアル｜KMAX</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Kaisei+Decol:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink:#f7c5d0; --pink-dark:#e8899a;
+    --yellow:#fde9b0; --yellow-dark:#d4a017;
+    --mint:#b8e8d8; --mint-dark:#5bbfa0;
+    --lavender:#d9d0f0; --lavender-dark:#9580d4;
+    --sky:#c2e4f8; --sky-dark:#5aaee0;
+    --peach:#fcd5b0; --peach-dark:#f0954a;
+    --blue:#a8c8e8; --blue-dark:#4a8fbf;
+    --text:#3d2e2e; --text-light:#7a6060;
+    --bg:#fff8f5; --border:rgba(247,197,208,0.4);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Zen Maru Gothic',sans-serif;background:var(--bg);color:var(--text);line-height:1.85;}
+  section[id]{scroll-margin-top:60px;}
+
+  /* ツールチップ */
+  .tip{position:relative;display:inline-flex;align-items:center;gap:2px;cursor:pointer;white-space:nowrap;}
+  .tip-icon{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;background:#bbb;color:white;border-radius:50%;font-size:8px;font-weight:700;flex-shrink:0;transition:background 0.2s;line-height:1;}
+  .tip:hover .tip-icon,.tip:focus .tip-icon{background:var(--text-light);}
+  .tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#3d2e2e;color:#fff;font-size:12px;line-height:1.7;padding:10px 14px;border-radius:12px;width:260px;z-index:300;box-shadow:0 4px 20px rgba(0,0,0,0.25);pointer-events:none;white-space:normal;}
+  .tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#3d2e2e;}
+  .tip:hover .tip-box,.tip:focus .tip-box{display:block;}
+
+  a.ref-link{color:var(--pink-dark);font-weight:700;text-decoration:none;border-bottom:1.5px dotted var(--pink-dark);}
+  a.ref-link:hover{color:var(--lavender-dark);}
+
+  /* ヘッダー */
+  header{background:linear-gradient(135deg,var(--pink) 0%,var(--yellow) 55%,var(--mint) 100%);padding:48px 40px 0;text-align:center;position:relative;overflow:hidden;}
+  header::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,0.4),transparent);border-radius:50%;}
+  header::after{content:'';position:absolute;bottom:0;left:-30px;width:250px;height:250px;background:radial-gradient(circle,rgba(255,255,255,0.3),transparent);border-radius:50%;}
+  .header-badge{display:inline-block;background:white;color:var(--pink-dark);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;margin-bottom:12px;letter-spacing:2px;position:relative;z-index:1;}
+  header h1{font-family:'Kaisei Decol',serif;font-size:clamp(22px,5vw,38px);color:var(--text);margin-bottom:6px;position:relative;z-index:1;}
+  header p{color:var(--text-light);font-size:13px;position:relative;z-index:1;margin-bottom:28px;}
+
+  /* ナビ（2段構成） */
+  nav{background:white;border-bottom:2px solid var(--pink);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(247,197,208,0.3);}
+  .nav-block{display:flex;align-items:stretch;}
+  .nav-block-label{display:flex;align-items:center;padding:0 14px;font-size:10px;font-weight:700;letter-spacing:1.5px;white-space:nowrap;border-right:2px solid var(--border);color:white;flex-shrink:0;}
+  .nav-block-label.knowledge{background:var(--lavender-dark);}
+  .nav-block-label.action{background:var(--mint-dark);}
+  .nav-block ul{display:flex;list-style:none;gap:2px;overflow-x:auto;scrollbar-width:none;padding:8px 10px;flex:1;justify-content:center;}
+  .nav-block ul::-webkit-scrollbar{display:none;}
+  .nav-block+.nav-block{border-top:1px solid var(--border);}
+  nav a{display:block;padding:4px 11px;border-radius:20px;font-size:11px;font-weight:700;text-decoration:none;color:var(--text-light);white-space:nowrap;transition:all 0.2s;}
+  .nav-block.knowledge a:hover{background:var(--lavender);color:var(--text);}
+  .nav-block.action a:hover{background:var(--mint);color:var(--text);}
+
+  main{max-width:880px;margin:0 auto;padding:40px 24px 80px;}
+
+  /* ブロック区切り */
+  .block-divider{display:flex;align-items:center;gap:12px;margin:48px 0 32px;}
+  .block-divider-pill{padding:5px 18px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:2px;color:white;white-space:nowrap;}
+  .block-divider-pill.knowledge{background:var(--lavender-dark);}
+  .block-divider-pill.action{background:var(--mint-dark);}
+  .block-divider-line{flex:1;height:1.5px;}
+  .block-divider-line.knowledge{background:linear-gradient(to right,var(--lavender-dark),transparent);}
+  .block-divider-line.action{background:linear-gradient(to right,var(--mint-dark),transparent);}
+
+  /* チャプター */
+  .chapter{margin-bottom:56px;}
+  .chapter-header{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+  .chapter-num{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Kaisei Decol',serif;font-size:18px;font-weight:700;color:white;flex-shrink:0;}
+  .ch1 .chapter-num{background:linear-gradient(135deg,var(--pink-dark),var(--lavender-dark));}
+  .ch2 .chapter-num{background:linear-gradient(135deg,var(--blue-dark),var(--sky-dark));}
+  .ch3 .chapter-num{background:linear-gradient(135deg,var(--yellow-dark),var(--peach-dark));}
+  .ch4 .chapter-num{background:linear-gradient(135deg,var(--mint-dark),var(--sky-dark));}
+  .ch5 .chapter-num{background:linear-gradient(135deg,var(--lavender-dark),var(--pink-dark));}
+  .ch6 .chapter-num{background:linear-gradient(135deg,var(--peach-dark),var(--yellow-dark));}
+  .ch7 .chapter-num{background:linear-gradient(135deg,var(--sky-dark),var(--mint-dark));}
+  .ch8 .chapter-num{background:linear-gradient(135deg,var(--pink-dark),var(--peach-dark));}
+  .chapter-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--text-light);margin-bottom:2px;}
+  .chapter-title{font-family:'Kaisei Decol',serif;font-size:clamp(16px,3vw,21px);color:var(--text);}
+
+  /* カード */
+  .card{background:white;border-radius:18px;padding:22px 26px;margin-bottom:13px;box-shadow:0 2px 14px rgba(200,150,150,0.07);border:1.5px solid var(--border);}
+  .card h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:13px;display:flex;align-items:center;gap:8px;}
+  .card h3::before{content:'';display:block;width:4px;height:17px;border-radius:4px;flex-shrink:0;}
+  .ch1 .card h3::before{background:var(--pink-dark);}
+  .ch2 .card h3::before{background:var(--blue-dark);}
+  .ch3 .card h3::before{background:var(--yellow-dark);}
+  .ch4 .card h3::before{background:var(--mint-dark);}
+  .ch5 .card h3::before{background:var(--lavender-dark);}
+  .ch6 .card h3::before{background:var(--peach-dark);}
+  .ch7 .card h3::before{background:var(--sky-dark);}
+  .ch8 .card h3::before{background:var(--pink-dark);}
+  .card p,.card li{font-size:13.5px;color:var(--text-light);line-height:1.9;}
+  .card ul,.card ol{padding-left:18px;}
+  .card li{margin-bottom:7px;}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+  th{background:var(--pink);color:var(--text);padding:9px 13px;font-weight:700;text-align:left;white-space:nowrap;}
+  td{padding:9px 13px;border-bottom:1px solid rgba(247,197,208,0.3);color:var(--text-light);vertical-align:top;}
+  tr:nth-child(even) td{background:rgba(247,197,208,0.05);}
+
+  .highlight{background:linear-gradient(135deg,rgba(247,197,208,0.18),rgba(253,233,176,0.18));border-left:4px solid var(--pink-dark);border-radius:0 12px 12px 0;padding:13px 17px;margin:13px 0;font-size:13.5px;color:var(--text);}
+  .highlight strong{display:block;margin-bottom:5px;color:var(--pink-dark);font-size:12px;}
+  .warning{background:rgba(245,200,66,0.1);border:1.5px solid var(--yellow-dark);border-radius:12px;padding:12px 17px;margin:13px 0;font-size:13.5px;color:var(--text);}
+  .warning::before{content:'⚠️ ';}
+
+  .badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;margin-right:3px;margin-bottom:3px;}
+  .badge-pink{background:var(--pink);color:var(--pink-dark);}
+  .badge-mint{background:var(--mint);color:var(--mint-dark);}
+  .badge-yellow{background:var(--yellow);color:#9a7010;}
+  .badge-sky{background:var(--sky);color:var(--sky-dark);}
+  .badge-blue{background:var(--blue);color:var(--blue-dark);}
+
+  .flow{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin:13px 0;}
+  .flow-item{background:white;border:2px solid var(--pink);border-radius:10px;padding:7px 13px;font-size:12px;font-weight:700;color:var(--text);text-align:center;}
+  .flow-arrow{font-size:15px;color:var(--pink-dark);}
+
+  .ng-list{list-style:none;padding:0;}
+  .ng-list li{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid rgba(247,197,208,0.3);font-size:13.5px;color:var(--text-light);}
+  .ng-list li::before{content:'🚫';flex-shrink:0;font-size:15px;margin-top:1px;}
+
+  .step-list{list-style:none;padding:0;counter-reset:step;}
+  .step-list li{counter-increment:step;padding:12px 0 12px 36px;border-bottom:1px solid rgba(247,197,208,0.2);font-size:13.5px;color:var(--text-light);position:relative;}
+  .step-list li::before{content:counter(step);display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--pink);color:var(--text);font-weight:700;font-size:11px;position:absolute;left:0;top:12px;}
+
+  /* サイズ図 */
+  .size-visual-wrap{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-end;margin-top:16px;}
+  .size-visual{display:flex;flex-direction:column;align-items:center;gap:7px;}
+  .size-frame{border:2.5px solid var(--pink-dark);border-radius:4px;background:linear-gradient(135deg,rgba(247,197,208,0.15),rgba(253,233,176,0.1));position:relative;display:flex;flex-direction:column;overflow:hidden;}
+  .size-frame-header{background:rgba(247,197,208,0.5);font-size:9px;color:var(--text);padding:3px 8px;text-align:left;font-weight:700;white-space:nowrap;flex-shrink:0;}
+  .size-frame-body{flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-light);}
+  .size-frame-footer{background:rgba(247,197,208,0.5);font-size:9px;color:var(--text);padding:3px 8px;text-align:right;font-weight:700;white-space:nowrap;flex-shrink:0;}
+  .size-label{font-size:12px;font-weight:700;color:var(--text);text-align:center;}
+  .size-px{font-size:11px;color:var(--text-light);text-align:center;}
+  .safe-lr{position:absolute;top:0;bottom:0;width:8%;background:rgba(120,120,120,0.12);border-right:1.5px dashed #bbb;}
+  .safe-lr.right{right:0;border-right:none;border-left:1.5px dashed #bbb;}
+  .safe-tb{position:absolute;left:0;right:0;height:10%;background:rgba(120,120,120,0.12);border-bottom:1.5px dashed #bbb;}
+  .safe-tb.bottom{bottom:0;top:auto;border-bottom:none;border-top:1.5px dashed #bbb;}
+  .size-note-list{font-size:11px;color:var(--text-light);margin-top:10px;padding-left:0;list-style:none;}
+  .size-note-list li{padding:2px 0;}
+
+  /* カラーグリッド */
+  .color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+  .color-card{border-radius:12px;padding:12px;text-align:center;border:1.5px solid rgba(247,197,208,0.4);}
+  .color-swatch{width:36px;height:36px;border-radius:50%;margin:0 auto 7px;}
+  .color-card .color-name{font-size:12px;font-weight:700;color:var(--text);}
+  .color-card .color-use{font-size:11px;color:var(--text-light);margin-top:3px;line-height:1.5;}
+
+  /* カラーイメージ表 */
+  .color-image-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+  .color-image-table th{padding:8px 12px;font-weight:700;text-align:left;white-space:nowrap;}
+  .color-image-table td{padding:8px 12px;border-bottom:1px solid rgba(247,197,208,0.3);color:var(--text-light);vertical-align:middle;}
+  .color-dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle;flex-shrink:0;}
+
+  /* フォントリスト */
+  .font-list{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
+  .font-item{display:flex;align-items:baseline;gap:8px;font-size:13.5px;}
+  .font-name{font-weight:700;color:var(--text);white-space:nowrap;min-width:80px;}
+  .font-desc{color:var(--text-light);}
+
+  /* 投稿カテゴリ */
+  .post-row{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+  .post-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .post-category-title-row{font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;}
+  .post-layout{display:flex;gap:12px;align-items:flex-start;}
+  .post-imgs{display:flex;gap:6px;flex-shrink:0;}
+  .post-thumb{width:80px;height:80px;object-fit:cover;border-radius:8px;border:1.5px solid var(--border);}
+  .post-text-list{list-style:none;padding:0;flex:1;}
+  .post-text-list li{font-size:13px;color:var(--text-light);padding:3px 0;border-bottom:1px solid rgba(247,197,208,0.2);}
+  .post-text-list li:last-child{border-bottom:none;}
+  .post-text-list li::before{content:'・';color:var(--pink-dark);}
+
+  /* ハッシュタグ一覧 */
+  .hashtag-list{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+  .hashtag-item{background:white;border:1.5px solid var(--border);border-radius:14px;padding:13px 16px;}
+  .hashtag-tag{font-size:14px;font-weight:700;color:var(--lavender-dark);margin-bottom:4px;}
+  .hashtag-desc{font-size:12px;color:var(--text-light);line-height:1.7;}
+
+  /* 目的KPIテーブル */
+  .kpi-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+  .kpi-table th{background:var(--pink);color:var(--text);padding:9px 13px;font-weight:700;text-align:left;}
+  .kpi-table td{padding:9px 13px;border-bottom:1px solid rgba(247,197,208,0.3);color:var(--text-light);vertical-align:top;}
+  .kpi-table tr:nth-child(even) td{background:rgba(247,197,208,0.05);}
+  .kpi-val{display:inline-block;background:var(--lavender);color:var(--lavender-dark);border-radius:8px;padding:1px 8px;font-size:12px;font-weight:700;white-space:nowrap;}
+
+  footer{background:linear-gradient(135deg,var(--pink) 0%,var(--lavender) 100%);text-align:center;padding:36px 24px;font-size:13px;color:var(--text-light);}
+  footer strong{display:block;font-family:'Kaisei Decol',serif;font-size:18px;color:var(--text);margin-bottom:6px;}
+
+  @media(max-width:640px){
+    main{padding:28px 14px 60px;}
+    .card{padding:16px;}
+    .chapter-header{gap:10px;}
+    .chapter-num{width:42px;height:42px;font-size:15px;}
+    th,td{padding:7px 9px;}
+    header{padding:36px 20px 0;}
+    .color-grid{grid-template-columns:repeat(2,1fr);}
+    .nav-block-label{font-size:9px;padding:0 10px;}
+    .nav-block ul{justify-content:flex-start;}
+    .size-visual-wrap{gap:20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">KMAX 社内マニュアル</div>
+  <h1>Instagram投稿マニュアル</h1>
+  <p>採用SNS担当者向け｜企画から投稿当日まで</p>
+</header>
+
+<nav>
+  <div class="nav-block action" style="border-top:none;">
+    <ul>
+      <li><a href="#ch1">Ch.1 インスタの基本・観察</a></li>
+      <li><a href="#ch2">Ch.2 KMAX運用ルール</a></li>
+      <li><a href="#ch3">Ch.3 企画と準備</a></li>
+      <li><a href="#ch4">Ch.4 画像作成</a></li>
+      <li><a href="#ch5">Ch.5 キャプション作成</a></li>
+      <li><a href="#ch6">Ch.6 確認</a></li>
+      <li><a href="#ch7">Ch.7 予約投稿</a></li>
+      <li><a href="#ch8">Ch.8 投稿当日</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+
+  <!-- Ch.1 -->
+  <section class="chapter ch1" id="ch1">
+    <div class="chapter-header">
+      <div class="chapter-num">1</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-label">CHAPTER 01</div>
+        <div class="chapter-title">Instagramの基本・良い投稿を観察しよう</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Instagramってどんな場所？</h3>
+      <p>Instagramは画像・動画を中心に発信するSNSです。テキストよりビジュアルが先に目に入るため、<strong>「魅せる」</strong>ことへの意識が特に重要です。求人票では伝えきれない「会社の雰囲気・社員のリアル」を届けることができ、高校生や若い求職者が「ここで働いてみたいかも」と感じてもらうことがゴールです。</p>
+    </div>
+
+    <div class="card">
+      <h3>投稿の種類</h3>
+      <table>
+        <tr><th>種類</th><th>特徴</th><th>KMAXでの使用</th></tr>
+        <tr>
+          <td><span class="badge badge-pink">カルーセル</span></td>
+          <td>複数枚の画像を横にスワイプして見る投稿形式。最大10枚まで設定でき、情報量を多く伝えられる</td>
+          <td>メインで使用</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-sky">リール</span></td>
+          <td>縦型の短尺動画。フォロワー以外にも表示されやすく拡散力が高い</td>
+          <td>状況に応じて使用</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-mint">ストーリーズ</span></td>
+          <td>投稿後24時間で自動的に消える縦型の投稿形式。気軽な発信やお知らせのシェアに向いている</td>
+          <td>随時使用</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>投稿サイズ</h3>
+      <div style="text-align:center;"><img src="assets/image-01.png" alt="投稿サイズ参考図" style="width:100%;max-width:640px;border-radius:12px;border:1.5px solid var(--border);display:inline-block;margin-top:8px;"></div>
+      <ul class="size-note-list" style="margin-top:12px;">
+        <li>📝 最低文字サイズ：30px（それ以下は読みにくくなるため注意）</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>カルーセル投稿の基本構成（6枚）</h3>
+      <div class="flow">
+        <div class="flow-item">1枚目<br><small>表紙</small></div>
+        <div class="flow-arrow">▶</div>
+        <div class="flow-item">2〜5枚目<br><small>中身</small></div>
+        <div class="flow-arrow">▶</div>
+        <div class="flow-item">最終枚<br><small>最後のページ</small></div>
+      </div>
+      <p style="font-size:12px;color:var(--text-light);text-align:center;">内容によって中身のページ数は調整してOKです。基本は合計6枚構成。</p>
+    </div>
+
+    <div class="card">
+      <h3>良い投稿を観察しよう</h3>
+      <p style="margin-bottom:12px;">投稿を作る前に良い投稿をたくさん見ておくことで、「どんなデザインが魅力的か」「どんな言葉が刺さるか」の感覚が身につきます。ただ見るだけでなく、<strong>「なぜこの投稿は良いのか？」を言語化する習慣</strong>が大切です。</p>
+      <p style="font-weight:700;margin-bottom:8px;">デザイン・カラーを読み解く</p>
+      <ul style="margin-bottom:14px;">
+        <li><strong>なぜこの色を使っているのか？</strong><br>色には見る人に与える印象（<span class="tip" tabindex="0">カラーイメージ<span class="tip-icon">?</span><span class="tip-box">色が人の感情や印象に与える効果のこと。同じ内容でも使う色で受け取り方が大きく変わる。</span></span>）があり、ターゲットに合わせて意図的に選ばれています。</li>
+        <li><strong>なぜこのフォントを使っているのか？</strong><br>フォントの選択はブランドの「らしさ」を作る重要な要素です。</li>
+        <li><strong>全体の印象がそのアカウントの戦略と合っているか？</strong><br>例：若者向け採用アカウントはパステル・手書き風で親しみやすさを演出している、など。</li>
+      </ul>
+      <p style="font-weight:700;margin-bottom:8px;">内容・構成を読み解く</p>
+      <ul>
+        <li>表紙を見て「続きを見たい」と思ったか？ → なぜそう感じた？</li>
+        <li>1枚ごとに伝えることが絞られているか？</li>
+        <li>ページをめくるごとに興味が深まる流れになっているか？</li>
+        <li>最後のページに次の行動への誘導があるか？</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Ch.2 -->
+  <section class="chapter ch2" id="ch2">
+    <div class="chapter-header">
+      <div class="chapter-num">2</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-label">CHAPTER 02</div>
+        <div class="chapter-title">KMAXにおけるInstagram運用ルール</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>アカウントの目的と採用区分・ターゲット</h3>
+      <p style="margin-bottom:12px;">@kmax_jpは採用SNSとして運用しています。対象とする採用は以下の3つで、それぞれターゲットが異なります。</p>
+      <table>
+        <tr><th>採用区分</th><th>主なターゲット</th></tr>
+        <tr>
+          <td><span class="badge badge-pink">新卒採用（高卒）</span></td>
+          <td>高校生・高校卒業予定者</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-sky">アルバイト採用</span></td>
+          <td>主に20代。フリーター・学生など。すでに在籍しているアルバイトさんも対象（紹介制度あり）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-mint">中途採用</span></td>
+          <td>主に20〜30代の転職希望者</td>
+        </tr>
+      </table>
+      <div class="highlight" style="margin-top:12px;">
+        <strong>⚠️ 高卒求人の公開ルール</strong>
+        高卒の求人情報は、求人票が公開される日（毎年7月頭ごろ）まで投稿NGです。時期を誤ると法律違反となるため、必ず確認してから投稿してください。
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>どんな投稿をしているか（一部抜粋）</h3>
+
+      <div class="post-row">
+        <div class="post-category-title-row">▽ KMAXで働く人の紹介</div>
+        <div class="post-layout">
+          <div class="post-imgs">
+            <img src="assets/image-02.jpg" alt="社員紹介投稿例1" class="post-thumb">
+            <img src="assets/image-03.jpg" alt="社員紹介投稿例2" class="post-thumb">
+          </div>
+          <ul class="post-text-list">
+            <li>新卒入社の社員</li>
+            <li>入社○年目の社員</li>
+            <li>育児休暇を取得した社員</li>
+            <li>アルバイトさん</li>
+            <li>社員さん</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="post-row">
+        <div class="post-category-title-row">▽ 会社について</div>
+        <div class="post-layout">
+          <div class="post-imgs">
+            <img src="assets/image-04.jpg" alt="会社投稿例1" class="post-thumb">
+            <img src="assets/image-05.jpg" alt="会社投稿例2" class="post-thumb">
+          </div>
+          <ul class="post-text-list">
+            <li>自己紹介・設立◎周年</li>
+            <li>社員研修の紹介</li>
+            <li>アルバイト紹介制度の紹介</li>
+            <li>夏季・年末年始の休暇お知らせ</li>
+            <li>資格取得者の紹介</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="post-row">
+        <div class="post-category-title-row">▽ 広報的内容</div>
+        <div class="post-layout">
+          <div class="post-imgs">
+            <img src="assets/image-06.jpg" alt="広報投稿例1" class="post-thumb">
+            <img src="assets/image-07.jpg" alt="広報投稿例2" class="post-thumb">
+          </div>
+          <ul class="post-text-list">
+            <li>学校訪問・イベントの告知＆報告</li>
+            <li>取材の様子</li>
+            <li>会社見学の様子（新卒採用）</li>
+            <li>懇親会の様子紹介</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>デザインルール（<span class="tip" tabindex="0">トンマナ<span class="tip-icon">?</span><span class="tip-box">「トーン＆マナー」の略。色・フォント・言葉遣いなど、投稿全体の見た目と雰囲気の統一ルールのこと。</span></span>）</h3>
+      <table style="margin-bottom:16px;">
+        <tr><th>要素</th><th>KMAXのルール</th></tr>
+        <tr><td>カラー</td><td>パステル系・やわらかい色合いを基本とする。ぱきっとした原色は避ける</td></tr>
+        <tr><td>イラスト</td><td>手書き風・水彩風のイラストを積極的に使用する</td></tr>
+        <tr><td>フォント</td><td>読みやすい丸ゴシック系を基本とする</td></tr>
+        <tr><td>雰囲気</td><td>親しみやすく・やさしい印象。堅すぎない表現を心がける</td></tr>
+      </table>
+
+      <p style="font-weight:700;font-size:13px;margin-bottom:8px;">フォントが与える印象</p>
+      <div class="font-list" style="margin-bottom:20px;">
+        <div class="font-item"><span class="font-name">丸ゴシック</span><span class="font-desc">やわらかく親しみやすい、読みやすい</span></div>
+        <div class="font-item"><span class="font-name">明朝体</span><span class="font-desc">上品・格式</span></div>
+        <div class="font-item"><span class="font-name">手書き風</span><span class="font-desc">カジュアル・温かみ</span></div>
+      </div>
+
+      <p style="font-weight:700;font-size:13px;margin-bottom:8px;">カラーと印象・用途</p>
+      <div class="color-grid" style="margin-bottom:12px;">
+        <div class="color-card">
+          <div class="color-swatch" style="background:#a8c8e8;"></div>
+          <div class="color-name">ブルー系</div>
+          <div class="color-use">KMAXの会社カラー<br>信頼感・誠実さ</div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#9ecfb0;"></div>
+          <div class="color-name">グリーン系</div>
+          <div class="color-use">安心感・成長</div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#f7c5d0;"></div>
+          <div class="color-name">ピンク系</div>
+          <div class="color-use">やさしさ・親しみ</div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#fde9b0;"></div>
+          <div class="color-name">イエロー系</div>
+          <div class="color-use">親近感・明るさ</div>
+        </div>
+      </div>
+      <table class="color-image-table">
+        <tr><th>カラー</th><th>与える印象</th><th>向いている投稿</th></tr>
+        <tr>
+          <td><span class="color-dot" style="background:#a8c8e8;"></span>ブルー系</td>
+          <td>信頼感・誠実さ・落ち着き</td>
+          <td>会社紹介・制度紹介・企業PRなど</td>
+        </tr>
+        <tr>
+          <td><span class="color-dot" style="background:#9ecfb0;"></span>グリーン系</td>
+          <td>安心感・成長・フレッシュ</td>
+          <td>新卒採用・求人情報・資格取得など</td>
+        </tr>
+        <tr>
+          <td><span class="color-dot" style="background:#f7c5d0;"></span>ピンク系</td>
+          <td>やさしさ・親しみやすさ・温かみ</td>
+          <td>社員紹介・アルバイト紹介など</td>
+        </tr>
+        <tr>
+          <td><span class="color-dot" style="background:#fde9b0;"></span>イエロー系</td>
+          <td>親近感・明るさ・ポジティブ</td>
+          <td>お知らせ・記念日・イベント告知など</td>
+        </tr>
+      </table>
+      <p style="font-size:11px;color:var(--text-light);margin-top:8px;">投稿内容に合わせてカラーを選ぶことで、見る人に伝わる印象をコントロールできます。</p>
+    </div>
+
+    <div class="card">
+      <h3>写真・素材の入手方法</h3>
+      <ul>
+        <li>LINEの「SNS素材」グループで共有された素材を使用する</li>
+        <li>素材が足りない・新たに必要な場合は<strong>若海さんに確認する</strong></li>
+        <li>社員にインタビューしたい場合は、<strong>内容・構成を設計したうえで若海さんに相談する</strong></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>写真使用のNGルール</h3>
+      <div class="warning">写真を選ぶ際は必ず以下を確認してください。</div>
+      <ul class="ng-list">
+        <li>社長の顔が映っている写真（入社式など集合写真は条件付きで要相談）</li>
+        <li>事務さん・菅沼さん・吹田さんが映っている写真</li>
+        <li>高校訪問・職場見学で生徒（未成年）の顔が映っている写真</li>
+        <li>現場の写真・他社のロゴや看板が映り込んでいる写真（顧客・関係者の許可がない場合）</li>
+        <li>個人情報・社外秘の情報が含まれる内容。氏名はすべてイニシャルで表記する。ヘルメットのネームシールは必ずぼかし処理をする（アルバイト・社員問わず全員対象）</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>投稿アイデアの進め方</h3>
+      <ol class="step-list">
+        <li>担当者から投稿テーマ・指示があれば、それに沿って企画・制作を進める</li>
+        <li>指示がない場合は、自分でアイデアを考えて「こんな投稿はどうですか？」と小坂に提案する</li>
+        <li>社員インタビューが必要な投稿は、内容・構成を設計したうえで若海さんに相談する</li>
+      </ol>
+    </div>
+  </section>
+
+
+  <!-- Ch.3 -->
+  <section class="chapter ch3" id="ch3">
+    <div class="chapter-header">
+      <div class="chapter-num">3</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-label">CHAPTER 03</div>
+        <div class="chapter-title">企画と準備</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>STEP 1｜素材と情報をそろえる</h3>
+      <ul>
+        <li>LINEの「SNS素材」グループで使える素材を確認する</li>
+        <li>素材が足りない場合は若海さんに確認する</li>
+        <li>社員インタビューが必要な場合は、構成を設計してから若海さんに相談する</li>
+        <li>掲載する情報（日付・場所・求人内容など）が最新かどうか確認する</li>
+        <li>写真を選ぶ際は必ず<a href="#ch2" class="ref-link">NGルール（Ch.2）</a>を確認する</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>STEP 2｜何を・誰に・どう伝えるかを決める</h3>
+      <table class="kpi-table">
+        <tr><th>決めること</th><th>考え方・目安</th></tr>
+        <tr>
+          <td><strong>目的</strong></td>
+          <td>
+            この投稿で何をしたいか？目的に応じた指標（<span class="tip" tabindex="0">KPI<span class="tip-icon">?</span><span class="tip-box">Key Performance Indicator（重要業績評価指標）の略。目標の達成度を測る数値のこと。</span></span>）で効果を確認する。<br><br>
+            <span style="font-size:12px;">
+              会社を知ってもらう → 1投稿あたりの閲覧数が前回投稿より <span class="kpi-val">○%UP</span><br>
+              応募につなげる　　 → 1投稿あたりのプロフィール遷移数が前回投稿より <span class="kpi-val">○%UP</span><br>
+              施工管理希望者を増やす → 新卒入社者のうち施工管理希望者 <span class="kpi-val">8割</span>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>ターゲット</strong></td>
+          <td>誰に届けたいか？<br>例：高校生・保護者・転職希望者・フリーター</td>
+        </tr>
+        <tr>
+          <td><strong>メッセージ</strong></td>
+          <td>一番伝えたいことは何か？<strong>1投稿1メッセージが原則。</strong></td>
+        </tr>
+        <tr>
+          <td><strong>切り口</strong></td>
+          <td>共感・驚き・有益さ、どれで引きつけるか？</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>STEP 3｜構成を決める</h3>
+      <p style="font-size:12px;color:var(--text-light);margin-bottom:14px;">Canvaを開く前に「何枚・各ページに何を書くか」をメモしておくと、制作中に迷わずに作業できます。</p>
+      <table>
+        <tr><th>ページ</th><th>役割</th><th>ポイント</th></tr>
+        <tr>
+          <td><span class="badge badge-pink">1枚目</span>表紙</td>
+          <td>スクロールを止め、続きを見たくさせる</td>
+          <td>一瞬で内容が伝わるキャッチコピー＋<strong>「次が気になる」引き</strong>のある言葉選びを意識する</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-sky">2〜5枚目</span>中身</td>
+          <td>詳しく・わかりやすく伝える</td>
+          <td>1枚に1メッセージ。ページをめくるごとに興味が深まる流れを作る</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-mint">最終枚</span>最後のページ</td>
+          <td>次の行動に誘導する</td>
+          <td>フォロー・保存・応募などの<span class="tip" tabindex="0">CTA<span class="tip-icon">?</span><span class="tip-box">Call To Action（行動喚起）の略。読んだ人に次の行動を促す一言のこと。「プロフィールのリンクをチェック！」など。</span></span>を明記する</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Ch.4 -->
+  <section class="chapter ch4" id="ch4">
+    <div class="chapter-header">
+      <div class="chapter-num">4</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-label">CHAPTER 04</div>
+        <div class="chapter-title">Canvaで画像を作成する</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Canva使用上の注意（必読）</h3>
+      <div class="warning">KMAXのCanvaは<strong>無料プラン</strong>のため、有料素材は使用できません。素材を選ぶ際は「無料」マークのものだけを使用してください。</div>
+      <div class="highlight">
+        <strong>💡 過去の投稿を活用しよう</strong>
+        過去の投稿をコピーして使い回すと、サイズやデザインの統一が保ちやすくなります。ただしInstagramの仕様変更でサイズが変わる場合もあるため、状況に応じて判断してください。
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>作成手順</h3>
+      <ol class="step-list">
+        <li>Canva（canva.com）にログインする</li>
+        <li>新規作成、または過去の投稿を開いて「…」メニューから「コピーを作成」を選ぶ</li>
+        <li>テキスト・画像・カラーをCh.3 STEP 3で決めた構成通りに差し替える</li>
+        <li>完成したら「共有」→「ダウンロード」→<strong>JPEG形式</strong>で保存する（全ページ分）</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h3>各ページ作成のポイント</h3>
+      <p style="font-weight:700;margin-bottom:7px;">📌 1枚目（表紙）</p>
+      <ul style="margin-bottom:14px;">
+        <li>一瞬でスクロールを止められるビジュアルにする</li>
+        <li>キャッチコピーは短く・明確に。「次が気になる」引きのある言葉選びを意識する</li>
+        <li>ヘッダー（▽ 過去の投稿はこちら！）とフッター（▷▷▷）を入れる※文言は変更してOK</li>
+      </ul>
+      <p style="font-weight:700;margin-bottom:7px;">📌 2〜5枚目（中身）</p>
+      <ul style="margin-bottom:14px;">
+        <li>1枚に伝えることを1つに絞る</li>
+        <li>文字量は多すぎない（読む気が失せない量を意識する）</li>
+        <li>図・アイコン・余白を活用して読みやすくする</li>
+      </ul>
+      <p style="font-weight:700;margin-bottom:7px;">📌 最終枚（最後のページ）</p>
+      <ul>
+        <li>フォロー・保存・応募などへの一言を入れる</li>
+        <li>応募・問い合わせ先など次のアクションを明示する</li>
+        <li>全体のトンマナと統一する</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Ch.5 -->
+  <section class="chapter ch5" id="ch5">
+    <div class="chapter-header">
+      <div class="chapter-num">5</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-label">CHAPTER 05</div>
+        <div class="chapter-title">キャプションを作成する</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>キャプション（投稿文）の書き方</h3>
+      <table>
+        <tr><th>要素</th><th>内容</th></tr>
+        <tr>
+          <td>書き出し</td>
+          <td>
+            「こんにちは！<br>ケイ・マックスです👷🏻」で統一する<br>
+            <span style="font-size:12px;color:var(--text-light);">※投稿時に一言目として付け加える（Instagram・Facebookともに共通）</span>
+          </td>
+        </tr>
+        <tr>
+          <td>冒頭2行</td>
+          <td>続きを読みたくなる工夫をする。「もっと見る」で折りたたまれるため、冒頭が特に重要</td>
+        </tr>
+        <tr>
+          <td>本文</td>
+          <td>スライドの補足情報を書く</td>
+        </tr>
+        <tr>
+          <td>締め</td>
+          <td>CTAを入れる（例：「プロフィールのリンクから詳細をチェック！」）</td>
+        </tr>
+      </table>
+      <div class="highlight" style="margin-top:14px;">
+        <strong>📘 Facebookへの同時投稿について</strong>
+        Meta Business SuiteでInstagramとFacebookに同時投稿しますが、「▽過去の投稿はこちら！」などのプロフィールメンション部分はFacebook側では不要なため、<strong>Facebook用のテキストから削除</strong>してください。
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>ハッシュタグの選び方</h3>
+      <p style="font-size:12px;color:var(--text-light);margin-bottom:10px;">キャプションの下に記載する。投稿内容と関連するものを選ぶこと。</p>
+      <table style="margin-bottom:16px;">
+        <tr><th>種類</th><th>投稿数の目安</th><th>KMAXでの例</th></tr>
+        <tr><td>ビッグタグ</td><td>100万件以上</td><td>#高卒採用　#アルバイト</td></tr>
+        <tr><td>ミドルタグ</td><td>1万〜100万件</td><td>#建設業　#東京求人</td></tr>
+        <tr><td>ニッチタグ</td><td>1万件以下</td><td>#KMAX</td></tr>
+      </table>
+
+      <p style="font-weight:700;font-size:13px;margin-bottom:10px;">KMAXの独自ハッシュタグ一覧</p>
+      <div class="hashtag-list">
+        <div class="hashtag-item">
+          <div class="hashtag-tag">#KMAX_worker</div>
+          <div class="hashtag-desc">PickUpした社員・作業員の紹介投稿に使用する</div>
+        </div>
+        <div class="hashtag-item">
+          <div class="hashtag-tag">#KMAX新卒採用</div>
+          <div class="hashtag-desc">新卒採用（高卒）に関する保存版投稿に使用する。KMAXの高卒採用情報をまとめて見られる</div>
+        </div>
+        <div class="hashtag-item">
+          <div class="hashtag-tag">#KMAX新卒採用20XX年度</div>
+          <div class="hashtag-desc">今年度の新卒採用に関する最新情報（イベント告知・会社見学の様子など）に使用する。KMAXが気になっている人がパッと最新情報を見られるように</div>
+        </div>
+        <div class="hashtag-item">
+          <div class="hashtag-tag">#KMAXまるわかり</div>
+          <div class="hashtag-desc">会社PRの投稿に使用する。会社説明・表彰・特許の紹介なども含む</div>
+        </div>
+        <div class="hashtag-item">
+          <div class="hashtag-tag">#KMAXスポンサー</div>
+          <div class="hashtag-desc">協賛関連の投稿に使用する。音楽コンサートなどの協賛情報をチラシ投稿で発信する際に使用</div>
+        </div>
+        <div class="hashtag-item">
+          <div class="hashtag-tag">#KMAXお勉強会</div>
+          <div class="hashtag-desc">用語や豆知識の解説投稿に使用する。現場の熱中症対策やモノの名前など、役立つ情報を発信</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>場所タグ・タグ付け</h3>
+      <table>
+        <tr><th>項目</th><th>設定内容</th></tr>
+        <tr><td>場所タグ</td><td><strong>大塚駅前</strong></td></tr>
+        <tr><td>タグ付け</td><td><strong>@kmax_jp</strong>・<strong>@heavyworkerstokyo</strong></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Ch.6 -->
+  <section class="chapter ch6" id="ch6">
+    <div class="chapter-header">
+      <div class="chapter-num">6</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-label">CHAPTER 06</div>
+        <div class="chapter-title">上長に確認を出す</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>確認資料の作り方と提出方法</h3>
+      <ol class="step-list">
+        <li><strong>投稿画像を印刷する</strong><br>ダウンロードした画像（6枚）をA4用紙1枚に6分割で印刷する</li>
+        <li><strong>投稿文を印刷する</strong><br>Ch.5で作成したキャプション＋ハッシュタグをCanva上のページに記載し、A4用紙1枚に読めるサイズで印刷する</li>
+        <li><strong>2枚を1セットにして提出する</strong><br>「投稿画像まとめA4」＋「投稿文A4」の2枚1組で上長に提出する</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h3>提出前の自己チェック</h3>
+      <ul>
+        <li>誤字・脱字・表記ゆれはないか</li>
+        <li>情報（日付・場所・金額など）に間違いはないか</li>
+        <li>写真NGルールに引っかかるものはないか</li>
+        <li>ヘルメットのネームシールはぼかし処理されているか</li>
+        <li>KMAXのトンマナと合っているか</li>
+        <li>Ch.3で決めた「目的・ターゲット」に合った内容になっているか</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Ch.7 -->
+  <section class="chapter ch7" id="ch7">
+    <div class="chapter-header">
+      <div class="chapter-num">7</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-label">CHAPTER 07</div>
+        <div class="chapter-title">Meta Business Suiteで予約投稿する</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Meta Business Suiteとは</h3>
+      <p>InstagramとFacebookをまとめて管理・予約投稿できるMetaの無料ツールです。KMAXではInstagramとFacebookの<strong>両方に同時投稿</strong>しています。</p>
+    </div>
+
+    <div class="card">
+      <h3>予約投稿の手順</h3>
+      <ol class="step-list">
+        <li>Meta Business Suite（business.facebook.com）にログインする</li>
+        <li>左メニューから「投稿とストーリーズ」を選ぶ</li>
+        <li>「投稿を作成」をクリックする</li>
+        <li>Instagram・Facebook両方のアカウントを選択する</li>
+        <li>Canvaでダウンロードした画像を全枚アップロードする</li>
+        <li>キャプション・ハッシュタグを入力する</li>
+        <li>場所タグ（大塚駅前）・タグ付け（@kmax_jp・@heavyworkerstokyo）を設定する</li>
+        <li>Facebook用テキストから▽のプロフィールメンション部分を削除する</li>
+        <li>「スケジュール設定」を選び、投稿日時を設定する</li>
+        <li>「スケジュール」ボタンをクリックして完了</li>
+      </ol>
+      <div class="highlight" style="margin-top:14px;">
+        <strong>📅 投稿タイミングのルール</strong>
+        基本は<strong>平日12:00投稿</strong>。土日祝は投稿なし。営業時間（10:00〜19:00）内で設定する。投稿スケジュールの管理は小坂が担当するため、日時は小坂に確認すること。
+      </div>
+    </div>
+  </section>
+
+  <!-- Ch.8 -->
+  <section class="chapter ch8" id="ch8">
+    <div class="chapter-header">
+      <div class="chapter-num">8</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-label">CHAPTER 08</div>
+        <div class="chapter-title">投稿当日にやること</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>投稿当日のToDoリスト</h3>
+      <ol class="step-list">
+        <li>投稿が正しく公開されているか確認する</li>
+        <li>
+          <strong>プレビューのサイズを調整する</strong><br>
+          「プレビューを調整」から表示サイズを小さくする。いいね数・シェア数が表示されないように設定する
+        </li>
+        <li>
+          <strong>ストーリーズにシェアする</strong><br>
+          投稿の紙飛行機マーク（シェアボタン）→「ストーリーズに投稿を追加」→ スタンプ等を追加して投稿する<br>
+          <span style="font-size:11px;color:var(--text-light);">※ストーリーズは24時間で自動削除されます</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>KMAX Instagram マニュアル</strong>
+  株式会社ケイ・マックス｜採用SNS担当者向け社内資料
+</footer>
+
+</body>
+</html>
